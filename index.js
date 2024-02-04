@@ -82,7 +82,7 @@ raisedCard.innerHTML = `$${totalPledge.toLocaleString()}`
 
 // grab number of games card and set its inner HTML
 const gamesCard = document.getElementById("num-games");
-let totalGames = GAMES_JSON.reduce( (innerTotal, nextDOM) => {
+let totalGames = GAMES_JSON.reduce( (innerTotal) => {
     return innerTotal + 1
 }, 0)
 gamesCard.innerHTML = `${totalGames}`
@@ -148,13 +148,24 @@ allBtn.addEventListener("click", showAllGames)
 const descriptionContainer = document.getElementById("description-container");
 
 // use filter or reduce to count the number of unfunded games
-
+let unfundedGames = GAMES_JSON.filter( (element) => {
+    let goal = element["goal"]
+    let pledged = element["pledged"]
+    return goal > pledged
+})
+let numUnfundedGames = unfundedGames.reduce( (total) => {
+    return total + 1
+}, 0)
 
 // create a string that explains the number of unfunded games using the ternary operator
-
+const displayStr = `A total of $${totalPledge.toLocaleString()} has been raised for ${totalGames} ${totalGames > 1 ? "games" : "game"}. 
+                    Currently, ${numUnfundedGames} ${numUnfundedGames > 1 ? "games" : "game"} remains unfunded. 
+                    We need your help to fund these amazing games!`
 
 // create a new DOM element containing the template string and append it to the description container
-
+let newP = document.createElement("p")
+newP.innerHTML = `${displayStr}`
+descriptionContainer.append(newP)
 /************************************************************************************
  * Challenge 7: Select & display the top 2 games
  * Skills used: spread operator, destructuring, template literals, sort 
