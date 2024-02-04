@@ -5,6 +5,14 @@ body {
     background-color: #758190;
 }
 
+h2 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
 #tentacles {
     width: 50px;
 }
@@ -72,4 +80,14 @@ button {
     padding: 1%;
     margin: 1%;
     border-radius: 7px;
+}
+
+button:hover {
+    cursor: pointer;
+    box-shadow: 0 0 30px lightblue;
+}
+
+button:active {
+    cursor: pointer;
+    color: lightblue;
 }
